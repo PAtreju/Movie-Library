@@ -1,5 +1,6 @@
 package org.example.movielibrary.service;
 
+import org.example.movielibrary.dto.MovieDto;
 import org.example.movielibrary.dto.MovieListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,5 +34,14 @@ public class APIClient {
 
 
         return restTemplate.getForObject(url, MovieListResponse.class);
+    }
+
+    public MovieDto getMovie(long id) {
+        String url = UriComponentsBuilder.fromHttpUrl(baseUrl + "/movie/" + id)
+                .queryParam("api_key", apiKey)
+                .queryParam("language", "en-US")
+                .toUriString();
+
+        return restTemplate.getForObject(url, MovieDto.class);
     }
 }
