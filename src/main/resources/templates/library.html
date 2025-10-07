@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="topbar">
+    <h1>Popular Movies</h1>
+</div>
+<div>
+    <div th:each="m : ${movies}">
+        <a th:href="@{'/movies/' + ${m.id}}">
+            <img th:if="${m.posterPath != null}" th:src="${'https://image.tmdb.org/t/p/w342' + m.posterPath}" alt="Poster"/>
+        </a>
+    </div>
+</div>
+<div style="margin-top:20px">
+    <a th:if="${page>1}" th:href="@{/library(page=${page-1})}">← Prev</a>
+    <span th:text="${page}"></span>
+    <a th:if="${page<totalPages}" th:href="@{/library(page=${page+1})}">Next →</a>
+</div>
+</body>
+</html>
