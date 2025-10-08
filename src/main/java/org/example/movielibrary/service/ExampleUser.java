@@ -19,7 +19,7 @@ public class ExampleUser {
                 .orElseGet(() -> {
                     User u = User.builder()
                             .username("admin")
-                            .password("123") // placeholder; no security wired yet
+                            .password("123")
                             .email("admin@example.com")
                             .build();
                     return users.save(u).getId();

@@ -14,20 +14,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable=false, unique=true, length=50)
+    @Column(nullable=false, unique=true)
     private String username;
 
-    @Column(nullable=false, length=255)
+    @Column(nullable=false)
     private String password;
 
-    @Column(nullable=false, unique=true, length=100)
+    @Column(nullable=false, unique=true)
     private String email;
 
     @Column(name = "created_at", nullable=false)
     private Instant createdAt;
-
-    @PrePersist
-    void onCreate() {
-        if (createdAt == null) createdAt = Instant.now();
-    }
 }
