@@ -5,6 +5,7 @@ import org.example.movielibrary.dto.MovieDto;
 import org.example.movielibrary.entity.Favorite;
 import org.example.movielibrary.repo.FavoriteRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional; // <— UŻYJ TEJ
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class FavoriteService {
         return favorites.existsByUserIdAndMovieId(userId, movieId);
     }
 
+    @Transactional
     public void add(Integer userId, long movieId) {
         if (!favorites.existsByUserIdAndMovieId(userId, movieId)) {
             favorites.save(Favorite.builder()
@@ -28,6 +30,7 @@ public class FavoriteService {
         }
     }
 
+    @Transactional
     public void remove(Integer userId, long movieId) {
         favorites.deleteByUserIdAndMovieId(userId, movieId);
     }

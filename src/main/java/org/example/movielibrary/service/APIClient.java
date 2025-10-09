@@ -13,17 +13,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequiredArgsConstructor
 public class APIClient {
 
-
     private final RestTemplate restTemplate;
-
 
     @Value("${tmdb.baseUrl:https://api.themoviedb.org/3}")
     private String baseUrl;
 
-
     @Value("${tmdb.apiKey}")
     private String apiKey;
-
 
     public MovieListResponse getLibrary(int page) {
         String url = UriComponentsBuilder.fromHttpUrl(baseUrl + "/movie/popular")
@@ -44,4 +40,16 @@ public class APIClient {
 
         return restTemplate.getForObject(url, MovieDto.class);
     }
+
+    public MovieListResponse searchMovies(String query, int page) {
+        String url = UriComponentsBuilder.fromHttpUrl(baseUrl + "/search/movie")
+                .queryParam("api_key", apiKey)
+                .queryParam("language", "en-US")
+                .queryParam("query", query)
+                .queryParam("page", page)
+                .toUriString();
+
+        return restTemplate.getForObject(url, MovieListResponse.class);
+    }
+
 }

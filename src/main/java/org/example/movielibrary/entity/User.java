@@ -23,6 +23,6 @@ public class User {
     @Column(nullable=false, unique=true)
     private String email;
 
-    @Column(name = "created_at", nullable=false)
+    @Column(name = "created_at")
     private Instant createdAt;
 }
