@@ -8,6 +8,8 @@ import java.util.List;
 public interface FavoriteRepository extends JpaRepository<Favorite, Integer> {
 
     boolean existsByUserIdAndMovieId(Integer userId, Long movieId);
+
     List<Favorite> findAllByUserId(Integer userId);
+
     void deleteByUserIdAndMovieId(Integer userId, Long movieId);
 }

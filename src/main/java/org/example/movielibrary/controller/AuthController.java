@@ -22,7 +22,7 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() {
-        return "login"; // login.html template
+        return "login";
     }
 
     @GetMapping("/signup")
@@ -35,9 +35,6 @@ public class AuthController {
     public String doSignup(@ModelAttribute("form") SignupForm form, BindingResult br, Model model) {
         if (users.findByUsername(form.getUsername()).isPresent()) {
             br.rejectValue("username", "exists", "Username already taken");
-        }
-        if (users.findByUsername(form.getEmail()).isPresent()) {
-            // optional duplicate check if you also log in by email; otherwise check users.findByEmail(...)
         }
         if (br.hasErrors()) {
             return "signup";
@@ -53,11 +50,15 @@ public class AuthController {
 
     @Data
     public static class SignupForm {
-        @NotBlank @Size(min=3, max=50)
+
+        @NotBlank
+        @Size(min = 3, max = 50)
         private String username;
-        @NotBlank @Email
+        @NotBlank
+        @Email
         private String email;
-        @NotBlank @Size(min=6, max=100)
+        @NotBlank
+        @Size(min = 6, max = 100)
         private String password;
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class AuthUser {
+
     private final UserRepository users;
 
     public Integer requireUserId() {

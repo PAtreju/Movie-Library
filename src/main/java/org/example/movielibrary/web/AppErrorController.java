@@ -39,8 +39,8 @@ public class AppErrorController implements ErrorController {
         model.addAttribute("message", message);
 
         if (status == HttpStatus.NOT_FOUND.value()) {
-            return "error/404";    // -> src/main/resources/templates/error/404.html
+            return "error/404";
         }
-        return "error/error";       // -> src/main/resources/templates/error/error.html (fallback)
+        return "error/error";
     }
 }
