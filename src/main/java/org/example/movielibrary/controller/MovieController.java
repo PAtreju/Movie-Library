@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.movielibrary.dto.MovieDto;
 import org.example.movielibrary.dto.MovieListResponse;
 import org.example.movielibrary.security.AuthUser;
-import org.example.movielibrary.service.APIClient;
+import org.example.movielibrary.service.APIClientService;
 import org.example.movielibrary.service.FavoriteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class MovieController {
 
-    private final APIClient tmdb;
+    private final APIClientService tmdb;
     private final FavoriteService favs;
     private final AuthUser auth;
 

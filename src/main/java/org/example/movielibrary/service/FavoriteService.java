@@ -5,8 +5,7 @@ import org.example.movielibrary.dto.MovieDto;
 import org.example.movielibrary.entity.Favorite;
 import org.example.movielibrary.repo.FavoriteRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional; // <— UŻYJ TEJ
-
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
@@ -14,7 +13,7 @@ import java.util.List;
 public class FavoriteService {
 
     private final FavoriteRepository favorites;
-    private final APIClient tmdb;
+    private final APIClientService tmdb;
 
     public boolean isFavorite(Integer userId, long movieId) {
         return favorites.existsByUserIdAndMovieId(userId, movieId);

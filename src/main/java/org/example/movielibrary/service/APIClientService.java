@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-
 @Service
 @RequiredArgsConstructor
-public class APIClient {
+public class APIClientService {
 
     private final RestTemplate restTemplate;
 
@@ -27,7 +26,6 @@ public class APIClient {
                 .queryParam("language", "en-US")
                 .queryParam("page", page)
                 .toUriString();
-
 
         return restTemplate.getForObject(url, MovieListResponse.class);
     }
@@ -48,8 +46,6 @@ public class APIClient {
                 .queryParam("query", query)
                 .queryParam("page", page)
                 .toUriString();
-
         return restTemplate.getForObject(url, MovieListResponse.class);
     }
-
 }
